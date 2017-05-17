@@ -41,11 +41,3 @@ var Nav = React.createClass({
 })
 
 module.exports = Nav;
-
-var old = (
-  <div>
-    <h2>Nav Component!</h2>
-
-
-  </div>
-);
