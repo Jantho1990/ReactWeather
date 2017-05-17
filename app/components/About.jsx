@@ -2,8 +2,10 @@ var React = require('react');
 
 var About = (props) => (
   <div>
-    <h3>About</h3>
-    <p>This is a simple React application built to learn React.</p>
+    <h1 className="text-center">About</h1>
+    <p>This is a simple weather application built by Josh Anthony. To use, go to the Get Weather page and type a city name and state into the search bar. You can also use the search bar at the top of the page.</p>
+    <br/>
+    <p>Built with <a href="https://facebook.github.io/react/">ReactJS</a> and <a href="http://openweathermap.org/">Open Weather Map</a>.</p>
   </div>
 );
 
