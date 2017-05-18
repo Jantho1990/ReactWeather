@@ -1,4 +1,6 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
+var ReactDOMServer = require('react-dom/server');
 
 var ErrorModal = React.createClass({
   getDefaultProps: () => ({
@@ -9,12 +11,8 @@ var ErrorModal = React.createClass({
     message: React.PropTypes.string.isRequired
   },
   componentDidMount: function(){
-    var modal = new Foundation.Reveal($('#error-modal'));
-    modal.open();
-  },
-  render: function(){
     var {title, message} = this.props;
-    return (
+    var modalMarkup = (
       <div id="error-modal" className="reveal tiny text-center" data-reveal="">
         <h4>{title}</h4>
         <p>{message}</p>
@@ -22,6 +20,19 @@ var ErrorModal = React.createClass({
           <button className="button hollow" data-close="">Okay</button>
         </p>
       </div>
+    );
+
+    var $modal = $(ReactDOMServer.renderToString(modalMarkup));
+    $(ReactDOM.findDOMNode(this)).html($modal);
+
+    var modal = new Foundation.Reveal($('#error-modal'));
+    modal.open();
+  },
+  render: function(){
+    // We need to return an empty div because otherwise Foundation
+    // messes with the DOM in ways React doesn't like.
+    return (
+      <div></div>
     );
   }
 })
